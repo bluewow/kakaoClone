@@ -10,8 +10,6 @@ public class UserDto {
 	String id;
 	String pw;
 	String name;
-	String address;
+	String image;
 	String phone;
-	String email;
-	byte[] image;
 }

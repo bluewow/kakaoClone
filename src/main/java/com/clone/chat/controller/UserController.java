@@ -30,8 +30,9 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class UserController {
 
+
 	private final UserService userService;
-	
+
 	@PostMapping("/join")
 	public void join(@RequestBody UserDto dto) throws JsonProcessingException {
 		userService.join(dto);
@@ -49,10 +50,10 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(String id) throws JsonProcessingException {
-		
-		//TODO get user data
+	public String login(@RequestBody UserDto dto) throws JsonProcessingException {
 		HashMap<String, String> map = new LinkedHashMap<>();
+
+		//userService.login(dto);
 		map.put("id", "test@test.com");
 		map.put("name", "KimKiHyun");
 		map.put("phone", "010-xxxx-xxxx");

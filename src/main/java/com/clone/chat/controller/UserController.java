@@ -20,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin(origins = "*") //해당 origin 승인하기
 @RequestMapping("user")
 public class UserController {
 

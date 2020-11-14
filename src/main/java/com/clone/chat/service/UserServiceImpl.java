@@ -25,16 +25,6 @@ public class UserServiceImpl implements UserService {
 		if(user == null)
 			throw new ExceptionInInitializerError();
 	}
-
-	@Transactional
-	@Override
-	public void login(UserDto dto) {
-
-		User user = userRepository.findMember(dto.toEntity());
-
-		if(user == null)
-			throw new ExceptionInInitializerError();
-	}
 	
 
 }

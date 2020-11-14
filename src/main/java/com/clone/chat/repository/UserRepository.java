@@ -8,7 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserRepository extends JpaRepository<User, String> {
 
-    @Query("SELECT * FROM USER WHERE USER_ID = :id AND PASSWORD = :pw")
-    User findMember(User toEntity);
 
 }

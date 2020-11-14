@@ -53,7 +53,6 @@ public class UserController {
 	public String login(@RequestBody UserDto dto) throws JsonProcessingException {
 		HashMap<String, String> map = new LinkedHashMap<>();
 
-		//userService.login(dto);
 		map.put("id", "test@test.com");
 		map.put("name", "KimKiHyun");
 		map.put("phone", "010-xxxx-xxxx");

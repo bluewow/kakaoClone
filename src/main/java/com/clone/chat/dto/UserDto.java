@@ -1,7 +1,5 @@
 package com.clone.chat.dto;
 
-import com.clone.chat.domain.User;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -14,13 +12,4 @@ public class UserDto {
 	String name;
 	String image;
 	String phone;
-	
-	public User toEntity() {
-		return User.builder()
-			.id(id)
-			.pw(pw)
-			.name(name)
-			.phone(phone)
-			.build();
-	}
 }

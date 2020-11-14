@@ -1,6 +1,5 @@
 package com.clone.chat.service;
 
-import jdk.internal.instrumentation.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-
+	
 	@Transactional
 	@Override
 	public void join(UserDto dto) {

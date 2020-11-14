@@ -10,16 +10,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.clone.chat.dto.UserDto;
-import com.clone.chat.repository.UserRepository;
-import com.clone.chat.service.UserService;
-import com.clone.chat.util.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,13 +21,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("user")
 @RestController
+@CrossOrigin(origins = "http://3.35.140.126:9000/") //해당 origin 승인하기
 public class UserController {
 
-	private final UserService userService;
+	//private final UserService userService;
 	
 	@PostMapping("/join")
 	public void join(@RequestBody UserDto dto) throws JsonProcessingException {
-		userService.join(dto);
+		//userService.join(dto);
 		
 	}
 	

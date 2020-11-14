@@ -14,16 +14,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private final UserRepository userRepository;
-	
-	@Transactional
+	//private final UserRepository userRepository;
+
+
 	@Override
 	public void join(UserDto dto) {
-		User user = userRepository.save(dto.toEntity());
-		
-		if(user == null)
-			throw new ExceptionInInitializerError();
-	}
-	
+		//User user = userRepository.save(dto.toEntity());
 
+		//if(user == null)
+			//throw new ExceptionInInitializerError();
+	}
 }

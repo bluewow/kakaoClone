@@ -19,9 +19,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RequestMapping("user")
 @RestController
-@CrossOrigin(origins = "http://3.35.140.126:9000/") //해당 origin 승인하기
+@CrossOrigin(origins = "*") //해당 origin 승인하기
+@RequestMapping("user")
 public class UserController {
 
 	//private final UserService userService;

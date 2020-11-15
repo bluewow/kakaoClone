@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import com.clone.chat.dto.UserDto;
+import com.clone.chat.util.exception.BusinessException;
+import com.clone.chat.util.exception.ErrorCodes;
+import com.clone.chat.util.exception.ErrorTrace;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,7 +31,7 @@ public class UserController {
 	@PostMapping("/join")
 	public void join(@RequestBody UserDto dto) throws JsonProcessingException {
 		//userService.join(dto);
-		
+		throw new BusinessException(ErrorCodes.NULL_POINTER_EXCEPTION, ErrorTrace.getName());
 	}
 	
 	@PostMapping("/duplicate_check")

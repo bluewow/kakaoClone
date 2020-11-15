@@ -1,4 +1,4 @@
-package com.clone.chat.controller;
+package com.clone.chat.controller.user;
 
 import java.io.File;
 import java.io.IOException;

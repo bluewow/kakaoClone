@@ -13,14 +13,11 @@ import lombok.NoArgsConstructor;
 @Getter 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "chatroom")
+public class ChatRoom {
 	
-	@Id @Column(name = "user_id", nullable = false)
+	@Id @Column(name = "chatroom_id", nullable = false)
 	@GeneratedValue
 	Long id;
-	String password;
-	String address;
-	String phone;
-	
+	String name;
 }

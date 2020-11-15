@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,10 +18,18 @@ import lombok.NoArgsConstructor;
 public class User {
 	
 	@Id @Column(name = "user_id", nullable = false)
-	@GeneratedValue
-	Long id;
+	String id;	//email
 	String password;
-	String address;
+	String nickName;
 	String phone;
+	
+	@Builder
+	public User(String id, String password, String nickName, String phone) {
+		this.id = id;
+		this.password = password;
+		this.nickName = nickName;
+		this.phone = phone;
+	}
+	
 	
 }

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import com.clone.chat.dto.UserDto;
+import com.clone.chat.service.UserService;
+import com.clone.chat.util.ResponseForm;
 import com.clone.chat.util.exception.BusinessException;
 import com.clone.chat.util.exception.ErrorCodes;
 import com.clone.chat.util.exception.ErrorTrace;
@@ -26,12 +28,13 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("user")
 public class UserController {
 
-	//private final UserService userService;
+	private final UserService userService;
 	
 	@PostMapping("/join")
-	public void join(@RequestBody UserDto dto) throws JsonProcessingException {
-		//userService.join(dto);
-		throw new BusinessException(ErrorCodes.NULL_POINTER_EXCEPTION, ErrorTrace.getName());
+	public ResponseForm join(@RequestBody UserDto dto) {
+		userService.join(dto);
+		
+		return new ResponseForm();
 	}
 	
 	@PostMapping("/duplicate_check")

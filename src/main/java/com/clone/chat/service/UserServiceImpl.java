@@ -6,6 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.clone.chat.domain.User;
 import com.clone.chat.dto.UserDto;
 import com.clone.chat.repository.UserRepository;
+import com.clone.chat.util.exception.BusinessException;
+import com.clone.chat.util.exception.ErrorCodes;
+import com.clone.chat.util.exception.ErrorTrace;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,14 +17,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserServiceImpl implements UserService {
 
-	//private final UserRepository userRepository;
-
+	private final UserRepository userRepository;
 
 	@Override
 	public void join(UserDto dto) {
-		//User user = userRepository.save(dto.toEntity());
+		User user = userRepository.save(dto.toEntity());
 
-		//if(user == null)
-			//throw new ExceptionInInitializerError();
+		if(user == null)
+			throw new BusinessException(ErrorCodes.NULL_POINTER_EXCEPTION, ErrorTrace.getName());
 	}
 }

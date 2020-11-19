@@ -48,10 +48,13 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(String id) throws JsonProcessingException {
-		
+	public String login(@RequestBody UserDto dto) throws JsonProcessingException {
+
+		HashMap<String, String> map = new HashMap<>();
+		//map = userService.login(dto)
+		//return id,name,phone,img/ false
 		//TODO get user data
-		HashMap<String, String> map = new LinkedHashMap<>();
+
 		map.put("id", "test@test.com");
 		map.put("name", "KimKiHyun");
 		map.put("phone", "010-xxxx-xxxx");

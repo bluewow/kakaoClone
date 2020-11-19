@@ -1,6 +1,6 @@
 package com.clone.chat.controller.chat;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +18,26 @@ public class ChatController {
 
 	@PostMapping("/room-create")
 	public Long roomCreate(ChatRoomDto dto) {
+
+
+
+
+
+
 		return 0L;
 	}
 	
 	@GetMapping("/room-list")
-	public List<Long> roomList() {
-		return null;
+	public List<Map<String,Object>> roomList() {
+		List <Map<String,Object>> list = new ArrayList <Map<String,Object>>();
+		Map<String,Object> data = new HashMap<String,Object>();
+
+		data.put("chatroom1","study");
+		data.put("chatroom2","friends");
+		data.put("chatroom3","hobby");
+		data.put("chatroom4","business");
+		list.add(data);
+
+		return list;
 	}
 }

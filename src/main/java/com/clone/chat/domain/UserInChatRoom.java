@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.clone.chat.util.BaseTimeEntity;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "user_in_chatroom")
-public class UserInChatRoom {
+public class UserInChatRoom extends BaseTimeEntity {
 
 	@Id @Column(name = "user_in_chatroom_id", nullable = false)
 	@GeneratedValue

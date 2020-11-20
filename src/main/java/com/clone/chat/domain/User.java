@@ -2,9 +2,10 @@ package com.clone.chat.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.clone.chat.util.BaseTimeEntity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends BaseTimeEntity{
 	
 	@Id @Column(name = "user_id", nullable = false)
 	String id;	//email

@@ -19,11 +19,18 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 
+	@Transactional
 	@Override
 	public void join(UserDto dto) {
 		User user = userRepository.save(dto.toEntity());
 
 		if(user == null)
 			throw new BusinessException(ErrorCodes.NULL_POINTER_EXCEPTION, ErrorTrace.getName());
+	}
+
+	@Override
+	public void duplicateId(String userId) {
+		userRepository.findById(userId)
+			.orElseThrow(() -> new BusinessException(ErrorCodes.DUPLICATED_ID, ErrorTrace.getName()));
 	}
 }

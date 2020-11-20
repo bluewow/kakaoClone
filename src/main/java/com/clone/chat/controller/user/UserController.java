@@ -37,14 +37,11 @@ public class UserController {
 		return new ResponseForm();
 	}
 	
-	@PostMapping("/duplicate_check")
-	public String duplicate(String id) throws JsonProcessingException {
+	@GetMapping("/duplicate_check")
+	public ResponseForm duplicate(String id) {
+		userService.duplicateId(id);
 		
-		//TODO check user duplicate
-		HashMap<String, String> map = new LinkedHashMap<>();
-		map.put("return", "success");
-		
-		return new ObjectMapper().writeValueAsString(map);
+		return new ResponseForm();
 	}
 
 	@PostMapping("/login")

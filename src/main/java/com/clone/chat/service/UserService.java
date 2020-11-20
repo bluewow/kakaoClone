@@ -8,4 +8,9 @@ public interface UserService {
 	 * 사용자 등록
 	 */
 	public void join(UserDto dto);
+	
+	/*
+	 * 중복 체크
+	 */
+	public void duplicateId(String userId);
 }

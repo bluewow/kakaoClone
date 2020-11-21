@@ -13,7 +13,11 @@ public class ResponseForm extends LinkedHashMap<String, Object>{
 	private static final long serialVersionUID = -4098281931429200073L;
 
 	public ResponseForm() {
-		put("errMsg", "success");
+		put("result", "success");
+	}
+	
+	public ResponseForm(String key, Object obj) {
+		put(key, obj);
 	}
 	
 	public ResponseForm(ErrorCodes code, String funcName) {

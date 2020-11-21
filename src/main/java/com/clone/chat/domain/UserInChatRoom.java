@@ -34,7 +34,12 @@ public class UserInChatRoom extends BaseTimeEntity {
 	private User user; 
 	
 	@Column(columnDefinition="BOOLEAN DEFAULT false")
-	private boolean inOutStatus; 
-	
-	private String chatRoomAdmin;
+	private boolean inOutStatus;
+
+	public UserInChatRoom(ChatRoom chatRoom, User user, boolean inOutStatus) {
+		this.chatRoom = chatRoom;
+		this.user = user;
+		this.inOutStatus = inOutStatus;
+	}
 }
+	

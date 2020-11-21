@@ -2,7 +2,11 @@ package com.clone.chat.controller.chat;
 
 import java.util.*;
 
+import com.clone.chat.domain.ChatMessage;
+import com.clone.chat.dto.Greeting;
 import org.springframework.data.domain.Pageable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +18,7 @@ import com.clone.chat.service.ChatService;
 import com.clone.chat.util.ResponseForm;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.util.HtmlUtils;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,4 +40,23 @@ public class ChatController {
 
 		return new ResponseForm("list", list);
 	}
+
+
+	@MessageMapping("/hello")
+	@SendTo("/topic/greetings")
+	public Greeting greeting(ChatMessage message) throws Exception {
+		Thread.sleep(100); // delay
+		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+	}
+
+	@MessageMapping("/chat")
+	@SendTo("/topic/chat")
+	public ChatRoomDto chat(ChatRoomDto chat) throws Exception {
+		return new ChatRoomDto(chat.getName(), chat.getMessage());
+	}
+
+
+
+
+
 }

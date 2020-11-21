@@ -30,4 +30,19 @@ public class ChatRoomDto {
 		Long unreadMsgCount;
 		String lastMsg;
 	}
+
+	private String name;
+	private String message;
+
+	public ChatRoomDto(String name, String message) {
+		this.name = name;
+		this.message = message;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public String getMessage() {
+		return message;
+	}
 }

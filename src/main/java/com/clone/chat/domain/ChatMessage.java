@@ -23,4 +23,16 @@ public class ChatMessage extends BaseTimeEntity {
 	Long id;
 	String userId;
 	String text;
+
+
+
+	//chat message
+	private String name;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

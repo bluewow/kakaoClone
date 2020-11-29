@@ -33,7 +33,7 @@ public class UserController {
 	@PostMapping("/join")
 	public ResponseForm join(@RequestBody UserDto dto) {
 		userService.join(dto);
-		
+
 		return new ResponseForm();
 	}
 	
@@ -46,20 +46,23 @@ public class UserController {
 
 	@PostMapping("/login")
 	public String login(@RequestBody UserDto dto) throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
 
 		HashMap<String, String> map = new HashMap<>();
-		//map = userService.login(dto)
-		//return id,name,phone,img/ false
-		//TODO get user data
 
-		map.put("id", "test@test.com");
-		map.put("name", "KimKiHyun");
-		map.put("phone", "010-xxxx-xxxx");
-		map.put("img", "12345678-1234-5678-1234-567812345678");
+		if("abc@test.com".equals(dto.getId())&&"1234".equals(dto.getPw())){
+			map.put("id", "test@test.com");
+			map.put("name", "KimKiHyun");
+
+		}else{
+			System.out.println("fail");
+		}
+
+
 		
 		return new ObjectMapper().writeValueAsString(map);
 	}
-	
+
 	@GetMapping("/image")
 	public void getImage(String id, HttpServletResponse response) throws IOException {
 		File file = new File("src/main/resources/static/image/sample.png");

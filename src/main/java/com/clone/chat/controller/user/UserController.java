@@ -55,7 +55,8 @@ public class UserController {
 			map.put("name", "KimKiHyun");
 
 		}else{
-			System.out.println("fail");
+			map.put("fail", "fail");
+
 		}
 
 

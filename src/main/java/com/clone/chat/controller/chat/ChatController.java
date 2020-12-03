@@ -39,7 +39,7 @@ public class ChatController {
 	
 	@GetMapping("/room-list")
 	public ResponseForm roomList(String userId) {
-		List<ChatRoomDto.Response> list = chatService.getList(userId);
+		//List<ChatRoomDto.Response> list = chatService.getList(userId);
 
 		//임시
 		List<String>data = new ArrayList<String>();

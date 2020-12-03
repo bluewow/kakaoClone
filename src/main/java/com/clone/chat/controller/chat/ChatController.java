@@ -7,6 +7,7 @@ import com.clone.chat.dto.Greeting;
 import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,8 @@ import org.springframework.web.util.HtmlUtils;
 public class ChatController {
 
 	private final ChatService chatService;
+
+	private final SimpMessageSendingOperations messagingTemplate;
 	
 	@PostMapping("/room-create")
 	public ResponseForm roomCreate(@RequestBody ChatRoomDto dto) {
@@ -38,7 +41,13 @@ public class ChatController {
 	public ResponseForm roomList(String userId) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId);
 
-		return new ResponseForm("list", list);
+		//임시
+		List<String>data = new ArrayList<String>();
+
+		data.add("room1");
+		data.add("room2");
+		data.add("room3");
+		return new ResponseForm("list", data);
 	}
 
 
@@ -52,6 +61,7 @@ public class ChatController {
 	@MessageMapping("/chat")
 	@SendTo("/topic/chat")
 	public ChatRoomDto chat(ChatRoomDto chat) throws Exception {
+		//messagingTemplate.convertAndSend("/topic/chat/1", chat.getMessage());
 		return new ChatRoomDto(chat.getName(), chat.getMessage());
 	}
 

@@ -51,17 +51,17 @@ public class ChatController {
 	}
 
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
+	@MessageMapping("/hello/{roomNo}")
+	@SendTo("/topic/greetings/{roomNo}")
 	public Greeting greeting(ChatMessage message) throws Exception {
 		Thread.sleep(100); // delay
 		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
 	}
 
-	@MessageMapping("/chat")
-	@SendTo("/topic/chat")
+	@MessageMapping("/chat/{roomNo}")
+	@SendTo("/topic/chat/{roomNo}")
 	public ChatRoomDto chat(ChatRoomDto chat) throws Exception {
-		//messagingTemplate.convertAndSend("/topic/chat/1", chat.getMessage());
+
 		return new ChatRoomDto(chat.getName(), chat.getMessage());
 	}
 

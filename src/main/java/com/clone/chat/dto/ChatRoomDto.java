@@ -25,6 +25,7 @@ public class ChatRoomDto {
 	@Getter
 	@Setter
 	public static class Response {
+		Long chatRoomId;
 		String chatRoomName;
 		LocalDateTime modifiedDate;
 		Long unreadMsgCount;

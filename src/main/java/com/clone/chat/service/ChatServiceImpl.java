@@ -52,6 +52,7 @@ public class ChatServiceImpl implements ChatService{
 		
 		for(UserInChatRoom userInChatRoom : list) {
 			Response response = new Response();
+			response.setChatRoomId(userInChatRoom.getChatRoom().getId());
 			response.setChatRoomName(userInChatRoom.getChatRoom().getName());
 			response.setLastMsg(null);
 			response.setModifiedDate(userInChatRoom.getChatRoom().getModifiedDate());

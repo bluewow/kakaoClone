@@ -18,4 +18,9 @@ public interface ChatService {
 	 * 채팅방 목록 반환
 	 */
 	List<ChatRoomDto.Response> getList(String userId);
+	
+	/*
+	 * 초대
+	 */
+	void invite(List<String> users, Long chatRoomId);
 }

@@ -62,4 +62,16 @@ public class ChatServiceImpl implements ChatService{
 		}
 		return dtoList;
 	}
+
+	@Transactional
+	@Override
+	public void invite(List<String> users, Long chatRoomId) {
+		ChatRoom chatRoom = chatRoomRepository.getOne(chatRoomId);
+		
+		for(String userId : users) {
+			User user = userRepository.getOne(userId);
+			UserInChatRoom userInChatRoom = new UserInChatRoom(chatRoom, user, true);
+			userInChatRoomRepository.save(userInChatRoom);
+		}
+	}
 }

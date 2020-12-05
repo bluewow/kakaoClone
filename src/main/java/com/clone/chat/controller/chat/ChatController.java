@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clone.chat.dto.ChatRoomDto;
@@ -28,7 +29,12 @@ public class ChatController {
 
 	private final ChatService chatService;
 
-	private final SimpMessageSendingOperations messagingTemplate;
+	@PostMapping("/room-invite")
+	public ResponseForm invite(@RequestParam List<String> users, Long chatRoomId) {
+		chatService.invite(users, chatRoomId);
+
+		return new ResponseForm();
+	}
 	
 	@PostMapping("/room-create")
 	public ResponseForm roomCreate(@RequestBody ChatRoomDto dto) {

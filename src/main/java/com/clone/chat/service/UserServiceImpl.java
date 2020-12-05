@@ -1,5 +1,6 @@
 package com.clone.chat.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<String> getList(String userId) {
-		return null;
+	public List<String> getList() {
+		List<User> list = userRepository.findAll();
+		List<String> response = new ArrayList<>();
+		
+		list.forEach(l -> response.add(l.getId())); 
+		
+		return response;
 	}
 }

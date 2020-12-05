@@ -19,5 +19,5 @@ public interface UserService {
 	/*
 	 * 회원리스트 조회
 	 */
-	public List<String> getList(String userId);
+	public List<String> getList();
 }

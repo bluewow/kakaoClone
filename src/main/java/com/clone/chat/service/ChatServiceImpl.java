@@ -41,9 +41,8 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<Response> getList(String userId) {
-		User user = userRepository.getOne(userId);
-		List<UserInChatRoom> list = userInChatRoomRepository.findByUser(user);
+	public List<Response> getList(String userId, String search) {
+		List<UserInChatRoom> list = userInChatRoomRepository.findByUser(userId, search);
 		
 		return toDto(list);
 	}

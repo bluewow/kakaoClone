@@ -44,16 +44,10 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room-list")
-	public ResponseForm roomList(String userId) {
-		//List<ChatRoomDto.Response> list = chatService.getList(userId);
+	public ResponseForm roomList(String userId, String search) {
+		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
 
-		//임시
-		List<String>data = new ArrayList<String>();
-
-		data.add("room1");
-		data.add("room2");
-		data.add("room3");
-		return new ResponseForm("list", data);
+		return new ResponseForm("list", list);
 	}
 
 	//방입장시 알림메시지

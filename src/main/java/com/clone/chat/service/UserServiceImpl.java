@@ -42,11 +42,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<String> getList() {
+	public List<String> getList(String id) {
 		List<User> list = userRepository.findAll();
 		List<String> response = new ArrayList<>();
 		
-		list.forEach(l -> response.add(l.getId())); 
+		list.forEach(l ->  {
+			if(!l.getId().equals(id))
+				response.add(l.getId());
+		}); 
+
 		
 		return response;
 	}

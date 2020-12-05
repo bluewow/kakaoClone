@@ -34,7 +34,7 @@ public class UserController {
 	
 	@GetMapping("/list")
 	public ResponseForm list(String id) {
-		List<String> list = userService.getList();
+		List<String> list = userService.getList(id);
 
 		return new ResponseForm("list", list);
 	}

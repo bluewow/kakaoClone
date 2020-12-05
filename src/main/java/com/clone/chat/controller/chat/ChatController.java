@@ -50,14 +50,14 @@ public class ChatController {
 		return new ResponseForm("list", data);
 	}
 
-
+	//방입장시 알림메시지
 	@MessageMapping("/hello/{roomNo}")
 	@SendTo("/topic/greetings/{roomNo}")
 	public Greeting greeting(ChatMessage message) throws Exception {
 		Thread.sleep(100); // delay
 		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
 	}
-
+	//채팅 송신
 	@MessageMapping("/chat/{roomNo}")
 	@SendTo("/topic/chat/{roomNo}")
 	public ChatRoomDto chat(ChatRoomDto chat) throws Exception {

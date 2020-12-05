@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -45,9 +46,10 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserDto dto) throws JsonProcessingException {
+	public String login(@RequestBody UserDto dto, HttpSession session) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
-
+		System.out.println("로그1"+session.getId());
+		System.out.println("로그2"+session.getAttributeNames());
 		HashMap<String, String> map = new HashMap<>();
 
 		if("abc@test.com".equals(dto.getId())&&"1234".equals(dto.getPw())){

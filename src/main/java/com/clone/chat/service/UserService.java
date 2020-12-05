@@ -13,4 +13,6 @@ public interface UserService {
 	 * 중복 체크
 	 */
 	public void duplicateId(String userId);
+
+
 }

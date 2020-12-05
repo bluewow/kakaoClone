@@ -5,19 +5,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.clone.chat.domain.User;
 import com.clone.chat.dto.UserDto;
 import com.clone.chat.service.UserService;
 import com.clone.chat.util.ResponseForm;
-import com.clone.chat.util.exception.BusinessException;
-import com.clone.chat.util.exception.ErrorCodes;
-import com.clone.chat.util.exception.ErrorTrace;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +30,13 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+	
+	@GetMapping("/list")
+	public ResponseForm list(String id) {
+		List<String> list = userSerivce.getList(id);
+
+		return new ResponseForm("list", list);
+	}
 	
 	@PostMapping("/join")
 	public ResponseForm join(@RequestBody UserDto dto) {

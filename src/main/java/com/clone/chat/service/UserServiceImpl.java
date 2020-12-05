@@ -1,5 +1,6 @@
 package com.clone.chat.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class UserServiceImpl implements UserService {
 		if(user.isPresent())
 			throw new BusinessException(ErrorCodes.DUPLICATED_ID, ErrorTrace.getName());
 		
+	}
+
+	@Override
+	public List<String> getList(String userId) {
+		return null;
 	}
 }

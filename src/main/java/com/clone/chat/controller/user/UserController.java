@@ -48,8 +48,8 @@ public class UserController {
 	@PostMapping("/login")
 	public String login(@RequestBody UserDto dto, HttpSession session) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		System.out.println("로그1"+session.getId());
-		System.out.println("로그2"+session.getAttributeNames());
+		System.out.println("로그일"+session.getId());
+		System.out.println("로그이"+session.getAttributeNames());
 		HashMap<String, String> map = new HashMap<>();
 
 		if("abc@test.com".equals(dto.getId())&&"1234".equals(dto.getPw())){

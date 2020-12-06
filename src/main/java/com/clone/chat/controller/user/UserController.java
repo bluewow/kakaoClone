@@ -69,15 +69,6 @@ public class UserController {
 
 		}
 
-		if("user2@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
-			map.put("id", "user2@daum.net");
-			map.put("name", "user2");
-
-		}else{
-			map.put("fail", "fail");
-
-		}
-
 
 		
 		return new ObjectMapper().writeValueAsString(map);

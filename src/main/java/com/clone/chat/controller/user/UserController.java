@@ -60,9 +60,18 @@ public class UserController {
 		System.out.println("로그이"+session.getAttributeNames());
 		HashMap<String, String> map = new HashMap<>();
 
-		if("abc@test.com".equals(dto.getId())&&"1234".equals(dto.getPw())){
-			map.put("id", "test@test.com");
-			map.put("name", "KimKiHyun");
+		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
+			map.put("id", "user1@daum.net");
+			map.put("name", "user1");
+
+		}else{
+			map.put("fail", "fail");
+
+		}
+
+		if("user2@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
+			map.put("id", "user2@daum.net");
+			map.put("name", "user2");
 
 		}else{
 			map.put("fail", "fail");

@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -54,24 +56,24 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserDto dto, HttpSession session) throws JsonProcessingException {
+	public String login(@RequestBody UserDto dto, HttpServletRequest req) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		System.out.println("로그일"+session.getId());
-		System.out.println("로그이"+session.getAttributeNames());
-		HashMap<String, String> map = new HashMap<>();
+		HttpSession session = req.getSession();
+		Map<String,Object> resultMap = new HashMap<String,Object>();
 
 		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
-			map.put("id", "user1@daum.com");
-			map.put("name", "user1");
+			session.setAttribute("member",dto);
 
 		}else{
-			map.put("fail", "fail");
-
+			session.setAttribute("member",null);
 		}
 
+		return new ObjectMapper().writeValueAsString(resultMap);
+	}
 
-		
-		return new ObjectMapper().writeValueAsString(map);
+	@GetMapping("/logout")
+	public void logout(HttpSession session) throws JsonProcessingException{
+		session.invalidate();
 	}
 
 	@GetMapping("/image")

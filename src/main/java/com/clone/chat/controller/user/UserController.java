@@ -61,11 +61,18 @@ public class UserController {
 		HttpSession session = req.getSession();
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 
-		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
+/*		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
 			session.setAttribute("member",dto);
 
 		}else{
 			session.setAttribute("member",null);
+		}*/
+
+		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
+			resultMap.put("return","success");
+
+		}else{
+			resultMap.put("return","fail");
 		}
 
 		return new ObjectMapper().writeValueAsString(resultMap);

@@ -33,6 +33,8 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+
+
 	
 	@GetMapping("/list")
 	public ResponseForm list(String id) {
@@ -56,17 +58,15 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserDto dto, HttpServletRequest req) throws JsonProcessingException {
+	public String login(@RequestBody UserDto dto, HttpServletRequest request) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		HttpSession session = req.getSession();
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-
+		HttpSession session = request.getSession();
 
 		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
 			resultMap.put("return","success");
-
-			session.setAttribute("name",dto.getNickName());
 			session.setAttribute("id",dto.getId());
+
 
 		}else{
 			resultMap.put("return","fail");

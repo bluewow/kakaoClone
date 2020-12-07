@@ -61,15 +61,11 @@ public class UserController {
 		HttpSession session = req.getSession();
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 
-/*		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
-			session.setAttribute("member",dto);
-
-		}else{
-			session.setAttribute("member",null);
-		}*/
 
 		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
 			resultMap.put("return","success");
+			session.setAttribute("member",dto.getNickName());
+			session.setAttribute("member",dto.getId());
 
 		}else{
 			resultMap.put("return","fail");
@@ -78,10 +74,8 @@ public class UserController {
 		return new ObjectMapper().writeValueAsString(resultMap);
 	}
 
-	@GetMapping("/logout")
-	public void logout(HttpSession session) throws JsonProcessingException{
-		session.invalidate();
-	}
+
+
 
 	@GetMapping("/image")
 	public void getImage(String id, HttpServletResponse response) throws IOException {

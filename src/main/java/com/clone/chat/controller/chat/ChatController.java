@@ -32,6 +32,7 @@ public class ChatController {
 
 	private final ChatService chatService;
 
+
 	@PostMapping("/room-invite")
 	public ResponseForm invite(@RequestParam List<String> users, Long chatRoomId) {
 		chatService.invite(users, chatRoomId);
@@ -49,8 +50,12 @@ public class ChatController {
 	@GetMapping("/room-list")
 	public ResponseForm roomList(String userId, String search, HttpServletRequest req) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
+		Map<String,Object> resultdata=new HashMap<String,Object>();
+		HttpSession session = req.getSession();
+		System.out.println(session.getAttribute("id"));
+		resultdata.put("id",session.getAttribute("id"));
 
-		return new ResponseForm("list", list);
+		return new ResponseForm("list", resultdata);
 	}
 
 	//방입장시 알림메시지

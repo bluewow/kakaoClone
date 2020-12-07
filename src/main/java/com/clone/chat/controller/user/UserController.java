@@ -64,8 +64,6 @@ public class UserController {
 
 		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
 			resultMap.put("return","success");
-			session.setAttribute("member",dto.getNickName());
-			session.setAttribute("member",dto.getId());
 
 		}else{
 			resultMap.put("return","fail");

@@ -54,7 +54,7 @@ public class ChatController {
 		Map<String,Object> resultdata=new HashMap<String,Object>();
 		HttpSession session = request.getSession();
 		resultdata.put("id",session.getAttribute("id"));
-
+		session.invalidate();
 		return new ResponseForm("list", resultdata);
 	}
 

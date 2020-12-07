@@ -49,10 +49,8 @@ public class ChatController {
 	@GetMapping("/room-list")
 	public ResponseForm roomList(String userId, String search, HttpServletRequest req) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
-		HttpSession session = req.getSession();
 
-		List<String> list2 = (List<String>) session.getAttribute("id");
-		return new ResponseForm("list", list2);
+		return new ResponseForm("list", list);
 	}
 
 	//방입장시 알림메시지

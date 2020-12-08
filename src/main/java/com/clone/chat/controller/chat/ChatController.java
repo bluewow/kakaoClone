@@ -47,10 +47,8 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room-list")
-	public ResponseForm roomList(String userId, String search, HttpServletRequest request) {
+	public ResponseForm roomList(String userId, String search) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
-		HttpSession session = request.getSession();
-		System.out.println("리스트 로그"+session.getAttribute("id"));
 
 		return new ResponseForm("list", list);
 	}

@@ -22,6 +22,9 @@ import com.clone.chat.util.ResponseForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("chat")
@@ -44,8 +47,10 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room-list")
-	public ResponseForm roomList(String userId, String search) {
+	public ResponseForm roomList(String userId, String search, HttpServletRequest request) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
+		HttpSession session = request.getSession();
+		System.out.println("리스트 로그"+session.getAttribute("id"));
 
 		return new ResponseForm("list", list);
 	}

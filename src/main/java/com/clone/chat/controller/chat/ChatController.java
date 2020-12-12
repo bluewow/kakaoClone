@@ -46,7 +46,7 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room-list")
-	public ResponseForm roomList(String userId, String search, @RequestHeader("Authorization") String token) {
+	public ResponseForm roomList(String userId, String search, @RequestHeader(value = "Authorization", required=false) String token) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
 		logger.info("로그챗"+token);
 

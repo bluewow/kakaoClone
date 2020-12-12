@@ -53,8 +53,8 @@ public class ChatController {
 	@GetMapping("/room-list")
 	public ResponseForm roomList(String userId, String search, HttpServletRequest request) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
-		System.out.println("로그111"+request.getHeader("Authorization"));
-		logger.info("로그222"+request.getHeader("Authorization"));
+		System.out.println("로그챗111"+request.getHeader("Authorization"));
+		logger.info("로그챗222"+request.getHeader("Authorization"));
 
 		return new ResponseForm("list", list);
 	}

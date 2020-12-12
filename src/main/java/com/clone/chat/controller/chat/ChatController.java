@@ -9,12 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.clone.chat.dto.ChatRoomDto;
 import com.clone.chat.service.ChatService;
@@ -51,9 +46,9 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room-list")
-	public ResponseForm roomList(String userId, String search, HttpServletRequest request) {
+	public ResponseForm roomList(String userId, String search, @RequestHeader("Authorization") String token) {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
-		logger.info("로그챗"+request.getHeader("Authorization"));
+		logger.info("로그챗"+token);
 
 		return new ResponseForm("list", list);
 	}

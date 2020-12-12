@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -76,10 +77,9 @@ public class UserServiceImpl implements UserService {
 		authList.add(userId);
 
 		String jwt = Jwts.builder()
-				.setIssuer("Stormpath")
-				.setSubject("msilverman")
+				//.setIssuer("Stormpath")
+				//.setSubject("msilverman")
 				.claim("scope", authList)
-				.claim("name", "Micah Silverman")
 				.setIssuedAt(Date.from(Instant.now()))
 				.setExpiration(Date.from(Instant.now().plus(2, ChronoUnit.HOURS)))
 				.signWith(SignatureAlgorithm.HS256,
@@ -92,14 +92,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	public void validate(String jwt) throws UnsupportedEncodingException{
-		Claims claims =
-				Jwts.parser().setSigningKey("secret".getBytes("UTF-8")).parseClaimsJws(jwt).getBody();
+	public Map<String,Object> validate(String token, String userId) throws UnsupportedEncodingException{
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		//토큰을 복호화
+		Claims claims = Jwts.parser().setSigningKey("secret".getBytes("UTF-8")).parseClaimsJws(token).getBody();
+		//[]replace
+		String scope = String.valueOf(claims.get("scope")).replace("[","").replace("]","");
 
-		System.out.println(claims);
-		System.out.println(claims.get("scope"));
+		//유저아이디와 해당 유저아이디의 토큰값이 일치하면 success 아니면 fail
+		if(userId.equals(String.valueOf(scope))){
+			resultMap.put("return","success");
+		}else{
+			resultMap.put("return","fail");
+		}
 
 
+		return resultMap;
 	}
 
 

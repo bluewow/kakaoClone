@@ -1,10 +1,12 @@
 package com.clone.chat.controller.chat;
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import com.clone.chat.controller.user.UserController;
 import com.clone.chat.domain.ChatMessage;
 import com.clone.chat.dto.Greeting;
+import com.clone.chat.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -30,6 +32,8 @@ public class ChatController {
 	private final ChatService chatService;
 
 
+	private final UserService userService;
+
 
 	@PostMapping("/room-invite")
 	public ResponseForm invite(@RequestParam List<String> users, Long chatRoomId) {
@@ -46,9 +50,8 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room-list")
-	public ResponseForm roomList(String userId, String search, @RequestHeader(value = "Authorization", required=false) String token) {
+	public ResponseForm roomList(String userId, String search) throws UnsupportedEncodingException {
 		List<ChatRoomDto.Response> list = chatService.getList(userId, search);
-		logger.info("로그챗"+token);
 
 		return new ResponseForm("list", list);
 	}

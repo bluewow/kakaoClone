@@ -14,11 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.clone.chat.dto.UserDto;
 import com.clone.chat.service.UserService;
@@ -74,19 +70,22 @@ public class UserController {
 
 			//해당 유저의 정보를 통해 고유한 토큰 생성
 			String token = userService.create(dto.getId());
-
 			//클라이언트에 전송하기 위해 response 헤더에 인증토큰을 담아준다.
 			response.setHeader("Authorization", token);
-
-			logger.info("로그유저"+token);
 			resultMap.put("user_id",dto.getId());
-			resultMap.put("token",token);
 			resultMap.put("return","success");
 		}else{
 			resultMap.put("return","fail");
 		}
 
 		return new ObjectMapper().writeValueAsString(resultMap);
+	}
+
+
+	@GetMapping("/logout")
+	public String login(String userId, @RequestHeader(value = "Authorization", required=false) String token) throws JsonProcessingException,UnsupportedEncodingException {
+
+		return new ObjectMapper().writeValueAsString(userService.validate(token,userId));
 	}
 
 

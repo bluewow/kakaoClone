@@ -78,8 +78,7 @@ public class UserController {
 			//클라이언트에 전송하기 위해 response 헤더에 인증토큰을 담아준다.
 			response.setHeader("Authorization", token);
 
-			logger.info("로그111"+token);
-			System.out.println("로그222"+token);
+			logger.info("로그유저"+token);
 			resultMap.put("user_id",dto.getId());
 			resultMap.put("token",token);
 			resultMap.put("return","success");

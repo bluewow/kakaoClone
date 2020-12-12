@@ -2,23 +2,24 @@ package com.clone.chat.controller.user;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clone.chat.domain.User;
 import com.clone.chat.dto.UserDto;
 import com.clone.chat.service.UserService;
 import com.clone.chat.util.ResponseForm;
@@ -32,7 +33,13 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("user")
 public class UserController {
 
+	@Autowired
 	private final UserService userService;
+
+	Logger logger = LoggerFactory.getLogger(UserController.class);
+
+
+
 
 
 	
@@ -58,16 +65,24 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserDto dto, HttpServletRequest request) throws JsonProcessingException {
+	public String login(@RequestBody UserDto dto, HttpServletResponse response) throws JsonProcessingException,UnsupportedEncodingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-		HttpSession session = request.getSession();
 
 		if("user1@daum.net".equals(dto.getId())&&"1234".equals(dto.getPw())){
-			resultMap.put("return","success");
-			session.setAttribute("id",dto.getId());
-			System.out.println("로그인로그"+session.getAttribute("id"));
 
+
+			//해당 유저의 정보를 통해 고유한 토큰 생성
+			String token = userService.create(dto.getId());
+
+			//클라이언트에 전송하기 위해 response 헤더에 인증토큰을 담아준다.
+			response.setHeader("Authorization", token);
+
+			logger.info("로그111"+token);
+			System.out.println("로그222"+token);
+			resultMap.put("user_id",dto.getId());
+			resultMap.put("token",token);
+			resultMap.put("return","success");
 		}else{
 			resultMap.put("return","fail");
 		}

@@ -1,6 +1,8 @@
 package com.clone.chat.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import com.clone.chat.dto.UserDto;
 
@@ -20,4 +22,14 @@ public interface UserService {
 	 * 회원리스트 조회
 	 */
 	public List<String> getList(String id);
+
+
+
+
+
+
+	public String create(String userId) throws UnsupportedEncodingException;
+
+	public void validate(String jwt) throws UnsupportedEncodingException;
+
 }

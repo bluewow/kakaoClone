@@ -5,10 +5,13 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import com.clone.chat.controller.user.UserController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,9 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
+
+
+	Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Transactional
 	@Override
@@ -101,8 +107,10 @@ public class UserServiceImpl implements UserService {
 
 		//유저아이디와 해당 유저아이디의 토큰값이 일치하면 success 아니면 fail
 		if(userId.equals(String.valueOf(scope))){
+			logger.info("logoutSuccess");
 			resultMap.put("return","success");
 		}else{
+			logger.info("logoutFail");
 			resultMap.put("return","fail");
 		}
 

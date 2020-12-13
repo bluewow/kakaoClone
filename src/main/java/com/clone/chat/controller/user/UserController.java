@@ -71,10 +71,12 @@ public class UserController {
 			//해당 유저의 정보를 통해 고유한 토큰 생성
 			String token = userService.create(dto.getId());
 			//클라이언트에 전송하기 위해 response 헤더에 인증토큰을 담아준다.
+			logger.info("loginSuccess");
 			response.setHeader("Authorization", token);
 			resultMap.put("user_id",dto.getId());
 			resultMap.put("return","success");
 		}else{
+			logger.info("loginFail");
 			resultMap.put("return","fail");
 		}
 
